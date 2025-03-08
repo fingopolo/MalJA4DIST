@@ -1,0 +1,16 @@
+Malware:
+    Malware-traffic-analysis.net
+
+Benign:
+
+
+Both:
+    https://data.niaid.nih.gov/resources?id=zenodo_4743745 IoT-23
+
+
+Resources:
+    https://datasetsearch.research.google.com/search?src=0&query=benign%20traffic&docid=L2cvMTFsNnkwY2Jydw%3D%3D
+    https://www.unb.ca/cic/datasets/ids-2017.html
+    https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/?source=post_page-----247362855967--------------------------------
+    https://medium.com/foxio/ja4-network-fingerprinting-9376fe9ca637
+    https://bandaancha.eu/
