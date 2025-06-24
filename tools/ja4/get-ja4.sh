@@ -23,6 +23,7 @@
 
 JA4PY="ja4.py"
 JA4XPY="ja4x.py"
+JA4TSPY="ja4ts.py"
 JOINPY="join.py"
 APPNAME="Unknown" # default application name
 VERSION="0"       # default version
@@ -117,6 +118,7 @@ fi
 #
 TLSJA4=${FILENAME}-ja4-raw.csv
 TLSJA4X=${FILENAME}-ja4x.csv
+TLSJA4TS=${FILENAME}-ja4ts.csv
 
 if [ ! -f "${OUTDIR}/${TLSJA4}" ]; then
     echo "Saving JA4 raw fingerprints into ${OUTDIR}/${TLSJA4}"
@@ -146,11 +148,13 @@ if [ ! -f "${OUTDIR}/${TLSJA4}" ]; then
     if [ -r ${WHOISFILE} ]; then
 	    python3 ${JA4PY} -f "${OUTDIR}/${OUTFILE}" -app "${APPNAME}" -ver "${VERSION}" -type "${TYPE}" -short -whois "${WHOISFILE}" > "${OUTDIR}/${TLSJA4}"
 		python3 ${JA4XPY} "${INFILE}" -o "${OUTDIR}/${TLSJA4X}"
-		python3 ${JOINPY} "${OUTDIR}/${TLSJA4}" "${OUTDIR}/${TLSJA4X}" -o "${OUTDIR}/${TLSJA4}"
+		python3 ${JA4TSPY} "${INFILE}" -o "${OUTDIR}/${TLSJA4TS}"
+		python3 ${JOINPY} "${OUTDIR}/${TLSJA4}" "${OUTDIR}/${TLSJA4X}" "${OUTDIR}/${TLSJA4TS}" -o "${OUTDIR}/${TLSJA4}"
     else
 	    python3 ${JA4PY} -f "${OUTDIR}/${OUTFILE}" -app "${APPNAME}" -ver "${VERSION}" -type "${TYPE}" -short > "${OUTDIR}/${TLSJA4}"
 		python3 ${JA4XPY} "${INFILE}" -o "${OUTDIR}/${TLSJA4X}"
-		python3 ${JOINPY} "${OUTDIR}/${TLSJA4}" "${OUTDIR}/${TLSJA4X}" -o "${OUTDIR}/${TLSJA4}"
+		python3 ${JA4TSPY} "${INFILE}" -o "${OUTDIR}/${TLSJA4TS}"
+		python3 ${JOINPY} "${OUTDIR}/${TLSJA4}" "${OUTDIR}/${TLSJA4X}" "${OUTDIR}/${TLSJA4TS}" -o "${OUTDIR}/${TLSJA4}"
     fi
     
     if [ $? -ne 0 ]; then
