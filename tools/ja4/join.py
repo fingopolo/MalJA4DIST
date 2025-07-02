@@ -4,7 +4,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Une huellas JA4S y JA4X de dos archivos csv")
 parser.add_argument("ja4", help="Archivo JA4 fingerprint")
-#parser.add_argument("ja4x", help="Archivo JA4X fingerprint")
+parser.add_argument("ja4x", help="Archivo JA4X fingerprint")
 parser.add_argument("ja4ts", help="Archivo JA4TS fingerprint")
 parser.add_argument("-o", "--output", help="Archivo CSV de salida", default="output.csv")
 args = parser.parse_args()
@@ -25,13 +25,8 @@ full_join = pd.merge(
 )
 
 full_join = pd.merge(
-    df_ja4s_ja4,
+    full_join,
     df_ja4ts,
     on=["SrcIP", "DstIP", "SrcPort", "DstPort"],
     how="outer"
 )
-
-
-full_join.to_csv(args.output, index=False, sep=";")
-
-print(f"Full join completado. Resultado guardado en {args.output}")
